@@ -47,15 +47,10 @@ singularity shell docker://ghcr.io/andreyhgl/deseq2:main
 ## Include inside a nextflow process
 
 ```groovy
-process PROCESS_NAME {
-
-  . . .
-
+process PROCESS {
   container "${workflow.containerEngine == 'singularity' ?
     'docker://ghcr.io/andreyhgl/deseq2:main' :
     'ghcr.io/andreyhgl/deseq2:main'}"
-
-  . . .
 }
 ```
 
@@ -73,39 +68,39 @@ docker build -t deseq2 .
 
 ### Dockerfile details
 
-`Dockerfile` runs the content inside `install.R`, which holds all R-packages. Edit this file in order to add more packages: **CRAN** packages goes into `pkgs_cran` and **Bioconductor** packages into `pkgs_bioc`.
+`Dockerfile` runs the content inside `install.R`, which holds all R-packages. Edit `install.R` in order to add more packages:
++ **CRAN** packages goes into `pkgs_cran`
++ **Bioconductor** packages into `pkgs_bioc`
 
 ```dockerfile
 # Dockerfile
-
-. . .
-
 COPY install.R /tmp/install.R
 RUN Rscript /tmp/install.R
-
-. . .
 ```
 
 ```r
 # install.R
+pkgs_cran <- c(
+  "BiocManager",
+  "gtools",
+  "scales"
+)
 
-. . .
+install.packages(
+  pkgs_cran,
+  repos = "https://cloud.r-project.org",
+  Ncpus = parallel::detectCores()
+)
 
-bioc_version <- "3.19"
-
-pkgs_cran <- c("BiocManager", "gtools", "scales")
-
-install.packages(pkgs_cran, repos = getOption("repos"), Ncpus = n_cpus)
-
-pkgs_bioc <- c("DESeq2", "apeglm", "tximport")
+pkgs_bioc <- c(
+  "DESeq2",
+  "apeglm",
+  "tximport"
+)
 
 BiocManager::install(
   pkgs_bioc,
-  version = bioc_version,
   ask = FALSE,
   update = FALSE,
-  Ncpus = n_cpus
-)
-
-. . .
+  Ncpus = parallel::detectCores()
 ```
