@@ -32,12 +32,6 @@ BiocManager::install(
   Ncpus = n_cpus
 )
 
-BiocManager::install(
-  pkgs_Bioc,
-  ask = FALSE,
-  update = FALSE,
-  Ncpus = n_cpus
-)
 
 #---- Check -------------------------------------------------------------------
 
