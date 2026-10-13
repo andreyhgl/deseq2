@@ -1,12 +1,6 @@
 [![Build and Release Docker Container](https://github.com/andreyhgl/deseq2/actions/workflows/build-release.yml/badge.svg)](https://github.com/andreyhgl/deseq2/actions/workflows/build-release.yml)
 
-A **rocker/r-ver:4.4.0** container with [DESeq2](https://bioconductor.org/packages/DESeq2/) R-package (and some dependencies). Used for differential gene expression analysis of RNA-seq.
-
-> [!NOTE] 
-> The Bioconductor release is tied to the R version. When bumping
-> `rocker/r-ver` in the `Dockerfile`, update `bioc_version` to match
-> (see [Bioconductor releases](https://bioconductor.org/about/release-announcements/)). The build fails if any package is not
-> installed.
+A **bioconductor/bioconductor_docker:RELEASE_3_19** container with [DESeq2](https://bioconductor.org/packages/DESeq2/) R-package (and some dependencies). Used for differential gene expression analysis of RNA-seq.
 
 <details>
   <summary>Included softwares</summary>
