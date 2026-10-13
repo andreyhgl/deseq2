@@ -8,13 +8,21 @@ bioc_version <- "3.19"
 
 #---- CRAN packages -----------------------------------------------------------
 
-pkgs_cran <- c("BiocManager", "gtools", "scales")
+pkgs_cran <- c(
+  "BiocManager",
+  "gtools",
+  "scales"
+)
 
 install.packages(pkgs_cran, repos = getOption("repos"), Ncpus = n_cpus)
 
 #---- Bioconductor packages ---------------------------------------------------
 
-pkgs_bioc <- c("DESeq2", "apeglm", "tximport")
+pkgs_bioc <- c(
+  "DESeq2",
+  "apeglm",
+  "tximport"
+)
 
 # update = FALSE keeps CRAN dependencies at the rocker snapshot versions
 BiocManager::install(
