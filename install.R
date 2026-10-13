@@ -2,10 +2,6 @@
 
 n_cpus <- parallel::detectCores()
 
-# Bioconductor release matching the R version in the Dockerfile
-# (R 4.4 -> Bioconductor 3.19). Change both together.
-bioc_version <- "3.19"
-
 #---- CRAN packages -----------------------------------------------------------
 
 pkgs_cran <- c(
@@ -14,7 +10,11 @@ pkgs_cran <- c(
   "scales"
 )
 
-install.packages(pkgs_cran, repos = getOption("repos"), Ncpus = n_cpus)
+install.packages(
+  pkgs_cran,
+  repos = "https://cloud.r-project.org",
+  Ncpus = n_cpus
+)
 
 #---- Bioconductor packages ---------------------------------------------------
 
@@ -27,7 +27,13 @@ pkgs_bioc <- c(
 # update = FALSE keeps CRAN dependencies at the rocker snapshot versions
 BiocManager::install(
   pkgs_bioc,
-  version = bioc_version,
+  ask = FALSE,
+  update = FALSE,
+  Ncpus = n_cpus
+)
+
+BiocManager::install(
+  pkgs_Bioc,
   ask = FALSE,
   update = FALSE,
   Ncpus = n_cpus
