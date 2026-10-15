@@ -9,6 +9,7 @@ pkgs_cran <- c(
   "gtools",
   "scales",
   "ggplot2",
+  "ggrepel",
   "patchwork"
 )
 

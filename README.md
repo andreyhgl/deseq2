@@ -12,6 +12,7 @@ A **bioconductor/bioconductor_docker:RELEASE_3_19** container with [DESeq2](http
   + gtools
   + scales
 	+ ggplot2
+  + ggrepel 
 	+ patchwork
   + git
   + less
