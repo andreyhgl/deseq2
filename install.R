@@ -7,7 +7,9 @@ n_cpus <- parallel::detectCores()
 pkgs_cran <- c(
   "BiocManager",
   "gtools",
-  "scales"
+  "scales",
+  "ggplot2",
+  "patchwork"
 )
 
 install.packages(
